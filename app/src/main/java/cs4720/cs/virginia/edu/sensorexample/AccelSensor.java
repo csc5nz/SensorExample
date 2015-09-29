@@ -22,7 +22,7 @@ public class AccelSensor extends Activity implements SensorEventListener{
         setContentView(R.layout.activity_accel_sensor);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
     }
 
     @Override
@@ -32,22 +32,6 @@ public class AccelSensor extends Activity implements SensorEventListener{
 
     @Override
     public void onSensorChanged(SensorEvent event){
-        // In this example, alpha is calculated as t / (t + dT),
-        // where t is the low-pass filter's time-constant and
-        // dT is the event delivery rate.
-
-//        float alpha = 0.8f;
-//
-//        // Isolate the force of gravity with the low-pass filter.
-//        gravity[0] = alpha * gravity[0] + (1 - alpha) * event.values[0];
-//        gravity[1] = alpha * gravity[1] + (1 - alpha) * event.values[1];
-//        gravity[2] = alpha * gravity[2] + (1 - alpha) * event.values[2];
-//
-//        // Remove the gravity contribution with the high-pass filter.
-//        linear_acceleration[0] = event.values[0] - gravity[0];
-//        linear_acceleration[1] = event.values[1] - gravity[1];
-//        linear_acceleration[2] = event.values[2] - gravity[2];
-
         EditText field = (EditText)findViewById(R.id.editText2);
         field.setText(event.values[0] + " / " + event.values[1] + " / " + event.values[2]);
     }
