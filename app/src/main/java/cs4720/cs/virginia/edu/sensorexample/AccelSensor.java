@@ -15,6 +15,7 @@ public class AccelSensor extends Activity implements SensorEventListener{
 
     private SensorManager mSensorManager;
     private Sensor mSensor;
+    private double maxValue = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,11 @@ public class AccelSensor extends Activity implements SensorEventListener{
     public void onSensorChanged(SensorEvent event){
         EditText field = (EditText)findViewById(R.id.editText2);
         field.setText(event.values[0] + " / " + event.values[1] + " / " + event.values[2]);
+        if(event.values[0] + event.values[1] + event.values[2] > maxValue) {
+            maxValue = event.values[0] + event.values[1] + event.values[2];
+            EditText max = (EditText)findViewById(R.id.editText3);
+            max.setText("" + maxValue);
+        }
     }
 
     @Override
